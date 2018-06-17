@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Expecto.Runner.TestAdapter</AssemblyName>
+    <BuildOutputTargetFolder>build</BuildOutputTargetFolder>
+    <PackageId>Expecto.Runner</PackageId>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Env.fs" />
+    <Compile Include="AnonymousObserver.fs" />
+    <Compile Include="ExpectoTestDiscoverer.fs" />
+    <Compile Include="ExpectoTestExecutor.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="build/*" PackagePath="build/$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Expecto" Version="8.*" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.*" />
+  </ItemGroup>
+
+</Project>
