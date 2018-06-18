@@ -76,4 +76,4 @@ type ExpectoTestExecutor () =
                 frameworkHandle.SendMessage(TestMessageLevel.Informational, "Operation canceled")
             | ex -> frameworkHandle.SendMessage(TestMessageLevel.Error, ex.ToString())
 
-        member __.Cancel () = cancel.Cancel()
+        member __.Cancel() = cancel.Cancel()
