@@ -7,6 +7,6 @@ module internal Env =
     [<Literal>]
     let ExecutorUri = "executor://Expecto.Runner"
 
-    let runner = Assembly.GetExecutingAssembly()
+    let runner = Assembly.GetExecutingAssembly().FullName
 
     let expecto = Assembly.GetAssembly(typeof<ExpectoException>).FullName

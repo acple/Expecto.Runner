@@ -24,7 +24,7 @@ type ExpectoTestDiscoverer () =
                 query {
                     for source in sources do
                     let assembly = Assembly.LoadFrom(source)
-                    where (assembly <> Env.runner)
+                    where (assembly.FullName <> Env.runner)
                     where (assembly.GetReferencedAssemblies() |> Seq.exists (fun x -> x.FullName = Env.expecto))
                     let tests =
                         match testFromAssembly assembly with
