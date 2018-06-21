@@ -37,15 +37,16 @@ type ExpectoTestExecutor () =
 
         let result = Async.RunSynchronously <| evalTestsWithCancel token config tests
 
-        [ for _, summary in result do
-          let outcome, message =
-              match summary.result with
-              | Passed -> TestOutcome.Passed, String.Empty
-              | Ignored reason -> TestOutcome.Skipped, reason
-              | Failed reason -> TestOutcome.Failed, reason
-              | Error ex -> TestOutcome.Failed, ex.Message
-          yield TestResult(testCase, Outcome = outcome, ErrorMessage = message, Duration = summary.duration)
-        ]
+        seq {
+            for _, summary in result do
+            let outcome, message =
+                match summary.result with
+                | Passed -> TestOutcome.Passed, String.Empty
+                | Ignored reason -> TestOutcome.Skipped, reason
+                | Failed reason -> TestOutcome.Failed, reason
+                | Error ex -> TestOutcome.Failed, ex.Message
+            yield TestResult(testCase, Outcome = outcome, ErrorMessage = message, Duration = summary.duration)
+        }
 
     interface ITestExecutor with
         member __.RunTests
